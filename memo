@@ -1,0 +1,12 @@
+error: linker `cc` not found　が出たので、
+sudo apt updateとsudo apt install gccで解決
+
+・rustfmtを使うことでコードを決まったスタイルに整形できる
+
+・Rustのスタイルは、タブではなく、4スペースでインデントするということです。
+
+・cargo newを使ってプロジェクトを作成できる
+cargo buildを使ってプロジェクトをビルドできる
+cargo runを使うとプロジェクトのビルドと実行を1ステップで行える
+cargo checkを使うとバイナリを生成せずにプロジェクトをビルドして、エラーがないか確認できる
+例：cargo new --bin functions
