@@ -21,5 +21,26 @@ impl Dictionary {
     }
 }
 
+pub struct Game {
+    answer: String,
+    dictionary: Dictionary,
+}
 
+impl Default for Game {
+    fn default() -> Self {
+        let dict = Dictionary::new();
+        Game {
+            answer: dict.get_random_word(),
+            dictionary: dict,
+        }
+    }
+}
 
+impl Game {
+    pub fn get_answer(&self) -> String {
+        self.answer.to_string()
+    }
+    pub fn in_dictionary(&self, word: &str) -> bool {
+        self.dictionary.words.get(word).is_some()
+    }
+}
