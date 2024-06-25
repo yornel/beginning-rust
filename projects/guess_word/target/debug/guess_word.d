@@ -1,0 +1,1 @@
+/home/yonetani/beginning-rust/projects/guess_word/target/debug/guess_word: /home/yonetani/beginning-rust/projects/guess_word/src/lib.rs /home/yonetani/beginning-rust/projects/guess_word/src/main.rs /home/yonetani/beginning-rust/projects/guess_word/src/words.txt
