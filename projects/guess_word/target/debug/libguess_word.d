@@ -1,1 +1,1 @@
-/home/yonetani/beginning-rust/projects/guess_word/target/debug/libguess_word.rlib: /home/yonetani/beginning-rust/projects/guess_word/src/lib.rs /home/yonetani/beginning-rust/projects/guess_word/src/words.txt
+C:\Users\user\Desktop\rust\beginning-rust\projects\guess_word\target\debug\libguess_word.rlib: C:\Users\user\Desktop\rust\beginning-rust\projects\guess_word\src\lib.rs C:\Users\user\Desktop\rust\beginning-rust\projects\guess_word\src\words.txt
