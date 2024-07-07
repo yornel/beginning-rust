@@ -7,14 +7,17 @@
       Box::new(|cc| Box::new(MyEguiApp::new(cc))));
   }
 
+  #[derive(PartialEq, Debug)]
+  enum RadioValue { First, Second, Third }
+
   struct MyEguiApp {
-    pub value:bool,
+    pub value:RadioValue,
   }
   
   impl Default for MyEguiApp {
     fn default() -> MyEguiApp {
       MyEguiApp{
-        value:true,
+        value:RadioValue::First,
       }
     }
   }
@@ -32,7 +35,7 @@
         
         ui.spacing();
   
-        let msg = format!("checked = {}.", self.value);
+        let msg = format!("checked = {:?}.", self.value);
         let label_txt = egui::RichText::new(msg)
           .size(32.0);
         let label = egui::Label::new(label_txt);
@@ -40,10 +43,15 @@
   
         ui.separator();
   
-        let check_txt = egui::RichText::new("Checkbox")
-          .size(24.0);
-        let check = egui::Checkbox::new(&mut self.value, check_txt);
-        let _resp = ui.add(check);
+        let label_1 = egui::RichText::new("First").size(24.0);
+        let label_2 = egui::RichText::new("Second").size(24.0);
+        let label_3 = egui::RichText::new("Third").size(24.0);
+        //horizontalで横一列に並べて表示する
+        ui.horizontal(|ui| {
+          ui.radio_value(&mut self.value, RadioValue::First, label_1);
+          ui.radio_value(&mut self.value, RadioValue::Second, label_2);
+          ui.radio_value(&mut self.value, RadioValue::Third, label_3);
+        });
       });
     }
   }
