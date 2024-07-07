@@ -11,13 +11,15 @@
   enum MyItem { First, Second, Third }
 
   struct MyEguiApp {
-    pub value:MyItem,
+    pub message: String,
+    pub content: String,
   }
   
   impl Default for MyEguiApp {
     fn default() -> MyEguiApp {
       MyEguiApp{
-        value:MyItem::First,
+        message: String::from("Hello"),
+        content: String::from("This is content."),
       }
     }
   }
@@ -35,28 +37,20 @@
         
         ui.spacing();
   
-        let msg = format!("checked = {:?}.", self.value);
+        let msg = format!("Title:\"{}\"\nContent:[{}]", self.message, self.content);
         let label_txt = egui::RichText::new(msg)
-          .size(32.0);
+          .font(egui::FontId::proportional(24.0));
         let label = egui::Label::new(label_txt);
         ui.add(label);
   
         ui.separator();
   
-        ui.horizontal(|ui| {
-          let label_1 = egui::RichText::new("First").size(24.0);
-          if ui.add(egui::SelectableLabel::new(self.value == MyItem::First, label_1)).clicked() {
-              self.value = MyItem::First
-          }
-          let label_2 = egui::RichText::new("Second").size(24.0);
-          if ui.add(egui::SelectableLabel::new(self.value == MyItem::Second, label_2)).clicked() {
-            self.value = MyItem::Second
-          }
-          let label_3 = egui::RichText::new("Third").size(24.0);
-          if ui.add(egui::SelectableLabel::new(self.value == MyItem::Third, label_3)).clicked() {
-            self.value = MyItem::Third
-          }
-        });
+        let te_sl = egui::TextEdit::singleline(&mut self.message)
+          .font(egui::FontId::proportional(20.0));
+        ui.add(te_sl);
+        let te_ml = egui::TextEdit::multiline(&mut self.content)
+          .font(egui::FontId::proportional(20.0));
+        ui.add(te_ml);
       });
     }
   }
