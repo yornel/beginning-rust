@@ -8,16 +8,16 @@
   }
 
   #[derive(PartialEq, Debug)]
-  enum RadioValue { First, Second, Third }
+  enum MyItem { First, Second, Third }
 
   struct MyEguiApp {
-    pub value:usize,
+    pub value:MyItem,
   }
   
   impl Default for MyEguiApp {
     fn default() -> MyEguiApp {
       MyEguiApp{
-        value:0,
+        value:MyItem::First,
       }
     }
   }
@@ -35,16 +35,28 @@
         
         ui.spacing();
   
-        let msg = format!("value = {:?}.", self.value);
+        let msg = format!("checked = {:?}.", self.value);
         let label_txt = egui::RichText::new(msg)
-          .size(28.0);
+          .size(32.0);
         let label = egui::Label::new(label_txt);
         ui.add(label);
   
         ui.separator();
   
-        let drg = egui::DragValue::new(&mut self.value).speed(1);
-        ui.add(drg);
+        ui.horizontal(|ui| {
+          let label_1 = egui::RichText::new("First").size(24.0);
+          if ui.add(egui::SelectableLabel::new(self.value == MyItem::First, label_1)).clicked() {
+              self.value = MyItem::First
+          }
+          let label_2 = egui::RichText::new("Second").size(24.0);
+          if ui.add(egui::SelectableLabel::new(self.value == MyItem::Second, label_2)).clicked() {
+            self.value = MyItem::Second
+          }
+          let label_3 = egui::RichText::new("Third").size(24.0);
+          if ui.add(egui::SelectableLabel::new(self.value == MyItem::Third, label_3)).clicked() {
+            self.value = MyItem::Third
+          }
+        });
       });
     }
   }
