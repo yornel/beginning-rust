@@ -43,8 +43,8 @@
   
         ui.separator();
   
-        let sldr = egui::Slider::new(&mut self.value, 0..=100); //☆
-        ui.add(sldr); //☆
+        let drg = egui::DragValue::new(&mut self.value).speed(1);
+        ui.add(drg);
       });
     }
   }
